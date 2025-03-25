@@ -12,4 +12,7 @@ class WalletService:
     ):
         self.wallet_repository.create(title, balance, user_id)
 
+    def get_by_user_id(self, user_id: int):
+        return self.wallet_repository.get_by_user_id(user_id)
+
 

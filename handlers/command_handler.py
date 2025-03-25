@@ -1,5 +1,6 @@
 from aiogram import types
 from services import UserService, WalletService
+from keyboards import start_keyboard
 
 
 class CommandHandler:
@@ -12,4 +13,4 @@ class CommandHandler:
 
         self.user_service.signup(message.from_user.id, message.from_user.full_name, message.from_user.username)
 
-        await message.answer('Привет! Я буду твоим финансовым помощником!')
+        await message.answer('Привет! Я буду твоим финансовым помощником!', reply_markup=start_keyboard())

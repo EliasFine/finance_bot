@@ -38,3 +38,9 @@ class OperationsRepository:
         cursor = self.db.cursor()
         cursor.execute(sql, (title, is_income, total, user_id, wallet_id, ))
         self.db.commit()
+
+    def get_by_wallet(self, wallet_id: int):
+        sql = 'SELECT * FROM operations WHERE wallet_id = ?'
+        cursor = self.db.cursor()
+        cursor.execute(sql, (wallet_id, ))
+        return cursor.fetchall()
