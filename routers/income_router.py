@@ -1,8 +1,7 @@
-from aiogram import Dispatcher
+from aiogram import Dispatcher, F
 from handlers import IncomeHandler
-from aiogram.filters.command import Command
 from states import IncomeState
-from callbacks import ChooseWalletCallback
+from callbacks import ChooseWalletCallback, CategoryCallback
 
 
 class IncomeRouter:
@@ -11,7 +10,8 @@ class IncomeRouter:
         self.income_handler = income_handler
 
     def register_paths(self):
-        self.dp.message.register(self.income_handler.cmd_income, Command('income'))
+        self.dp.message.register(self.income_handler.cmd_income, F.text.in_({'Доход 💰', '/income'}))
         self.dp.callback_query.register(self.income_handler.get_wallet, ChooseWalletCallback.filter())
+        self.dp.callback_query.register(self.income_handler.get_category, CategoryCallback.filter())
         self.dp.message.register(self.income_handler.get_title, IncomeState.title)
         self.dp.message.register(self.income_handler.get_total, IncomeState.total)
