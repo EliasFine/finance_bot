@@ -1,4 +1,5 @@
 from sqlite3 import Connection
+from datetime import date
 
 
 class OperationsRepository:
@@ -43,4 +44,10 @@ class OperationsRepository:
         sql = 'SELECT * FROM operations WHERE wallet_id = ?'
         cursor = self.db.cursor()
         cursor.execute(sql, (wallet_id, ))
+        return cursor.fetchall()
+
+    def get_by_dates(self, start_date: date, end_date: date):
+        sql = 'SELECT * FROM operations WHERE created BETWEEN ? AND ?'
+        cursor = self.db.cursor()
+        cursor.execute(sql, (start_date, end_date,))
         return cursor.fetchall()

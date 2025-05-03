@@ -52,4 +52,5 @@ class IncomeHandler:
         wallet_id = 1
         self.operations_service.create(title, is_income=True, total=total, user_id=user_id, wallet_id=wallet_id)
         await message.answer('Доход успешно сохранен')
+        await state.clear()
 
