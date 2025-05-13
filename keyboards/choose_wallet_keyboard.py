@@ -2,7 +2,6 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from callbacks import ChooseWalletCallback
 
 
-
 def choose_wallet_keyboard(wallets):
     builder = InlineKeyboardBuilder()
     for wallet in wallets:

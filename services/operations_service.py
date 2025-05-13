@@ -20,4 +20,5 @@ class OperationsService:
             start_date: date,
             end_date: date
     ):
+        print(start_date, end_date)
         return self.operations_repository.get_by_dates(start_date, end_date)

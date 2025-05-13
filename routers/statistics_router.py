@@ -1,6 +1,6 @@
 from aiogram import Dispatcher, F
 from handlers import StatisticsHandler
-from aiogram.filters.command import Command
+from callbacks import StatisticsCallback
 
 
 class StatisticsRouter:
@@ -9,4 +9,5 @@ class StatisticsRouter:
         self.statistics_handler = statistics_handler
 
     def register_paths(self):
-        self.dp.message.register(self.statistics_handler.show_stats, F.text.in_({'Статистика', '/statistics'}))
+        self.dp.message.register(self.statistics_handler.show_stats, F.text.in_({'Статистика 📊', '/statistics'}))
+        self.dp.callback_query.register(self.statistics_handler.statistics_callback, StatisticsCallback.filter())
